@@ -35,7 +35,7 @@ async function main() {
       logoUrl: 'https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg',
       address: 'Av. Santa Fe 2500, Palermo, CABA',
       phone: '+54 11 4821-9999',
-      email: 'contacto@barberiavercel.com',
+      email: 'admin@turnos.com',
       timezone: 'America/Argentina/Buenos_Aires',
       primaryColor: '#0f172a', // Slate-900 (Vercel Style)
       socialLinks: {
