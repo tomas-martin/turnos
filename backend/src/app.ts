@@ -20,7 +20,10 @@ const app = express();
 // 1. Middlewares de Seguridad y CORS
 app.use(helmet());
 app.use(cors({
-  origin: '*', // Permitir cualquier origen en desarrollo, limitar en prod
+  origin: (origin, callback) => {
+    // Permitir cualquier origen dinámicamente para evitar problemas de CORS con credentials
+    callback(null, true);
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
