@@ -20,7 +20,7 @@ const app = express();
 // 1. Middlewares de Seguridad y CORS
 app.use(helmet());
 app.use(cors({
-  origin: (origin, callback) => {
+  origin: (_origin, callback) => {
     // Permitir cualquier origen dinámicamente para evitar problemas de CORS con credentials
     callback(null, true);
   },
