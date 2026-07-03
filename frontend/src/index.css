@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Variables de Diseño ──────────────────────────────────── */
+@layer base {
+  :root {
+    --primary: #0f172a;
+    --primary-hover: #1e293b;
+    --primary-foreground: #ffffff;
+
+    --background: #ffffff;
+    --foreground: #0f172a;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --muted-foreground: #64748b;
+    --muted-background: #f8fafc;
+    --sidebar-background: #fafafa;
+    --sidebar-border: #e2e8f0;
+  }
+
+  .dark {
+    --primary: #ffffff;
+    --primary-hover: #f4f4f5;
+    --primary-foreground: #09090b;
+
+    --background: #09090b;
+    --foreground: #fafafa;
+    --card: #0e0e11;
+    --border: #27272a;
+    --muted-foreground: #71717a;
+    --muted-background: #18181b;
+    --sidebar-background: #0a0a0d;
+    --sidebar-border: #1f1f23;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Scrollbar elegante */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted-foreground); }
+}
+
+/* ─── Utilidades de Color (Semánticas) ─────────────────────── */
+@layer utilities {
+  .bg-background { background-color: var(--background); }
+  .bg-card        { background-color: var(--card); }
+  .bg-muted-background { background-color: var(--muted-background); }
+  .bg-sidebar-background { background-color: var(--sidebar-background); }
+
+  .text-foreground { color: var(--foreground); }
+  .text-muted-foreground { color: var(--muted-foreground); }
+
+  .border-border { border-color: var(--border); }
+  .border-sidebar-border { border-color: var(--sidebar-border); }
+
+  .bg-primary { background-color: var(--primary); }
+  .bg-primary-hover { background-color: var(--primary-hover); }
+  .text-primary { color: var(--primary); }
+  .text-primary-foreground { color: var(--primary-foreground); }
+  .border-primary { border-color: var(--primary); }
+  .ring-primary { --tw-ring-color: var(--primary); }
+
+  /* Sombras Premium */
+  .shadow-premium {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.06), 0 1px 2px -1px rgba(0,0,0,0.06);
+  }
+  .shadow-premium-lg {
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.15), 0 2px 8px -2px rgba(0,0,0,0.10);
+  }
+  .dark .shadow-premium {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.4), 0 1px 2px -1px rgba(0,0,0,0.3);
+  }
+  .dark .shadow-premium-lg {
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.6), 0 2px 8px -2px rgba(0,0,0,0.5);
+  }
+
+  /* Animaciones */
+  .animate-fade-in {
+    animation: fadeIn 0.25s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* ─── FullCalendar Overrides (Premium Look) ─────────────────── */
+.fc {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 13px;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.fc .fc-button-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  border-radius: 0.375rem !important;
+  padding: 0.35rem 0.75rem !important;
+  transition: opacity 0.15s ease !important;
+  text-transform: capitalize !important;
+}
+
+.fc .fc-button-primary:hover {
+  opacity: 0.85 !important;
+}
+
+.fc .fc-button-primary:disabled {
+  opacity: 0.4 !important;
+}
+
+.fc .fc-daygrid-day-number,
+.fc .fc-col-header-cell-cushion {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  color: var(--muted-foreground) !important;
+}
+
+.fc .fc-scrollgrid,
+.fc .fc-scrollgrid-section > *,
+.fc th,
+.fc td {
+  border-color: var(--border) !important;
+}
+
+.fc .fc-daygrid-day.fc-day-today,
+.fc .fc-timegrid-col.fc-day-today {
+  background-color: color-mix(in srgb, var(--primary) 5%, transparent) !important;
+}
+
+.fc .fc-event {
+  border-radius: 5px !important;
+  font-weight: 600 !important;
+  font-size: 0.7rem !important;
+  cursor: pointer;
+  transition: opacity 0.15s ease !important;
+}
+
+.fc .fc-event:hover {
+  opacity: 0.85 !important;
+}
+
+.fc .fc-timegrid-slot-label {
+  font-size: 0.65rem;
+  color: var(--muted-foreground);
+  font-weight: 500;
+}
+
+/* Dark mode FullCalendar */
+.dark .fc .fc-toolbar-title {
+  color: var(--foreground);
+}
+
+.dark .fc-theme-standard .fc-scrollgrid {
+  border-color: var(--border) !important;
+}
+
+.dark .fc .fc-list-empty {
+  background-color: var(--card) !important;
+}
+
+/* ─── Input & Select Focus Ring ─────────────────────────────── */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primary);
+}
